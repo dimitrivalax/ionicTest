@@ -1,13 +1,17 @@
 language: node_js
 node_js:
  — “8.9.4”
+
 branches:
  only:
  — master
+
 before_script:
  — npm install -g ionic cordova
+
 script:
  — ionic cordova build browser — prod
+
 deploy:
  provider: pages
  skip-cleanup: true
@@ -15,4 +19,4 @@ deploy:
  keep-history: true
  on:
    branch: master
- local_dir: wwwW
+ local_dir: www
