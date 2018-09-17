@@ -39,11 +39,21 @@
     "@types/jest": "^23.3.2",
     "jest": "^23.6.0",
     "jest-preset-angular": "^6.0.0",
+    "ts-jest": "^23.1.4",
     "typescript": "~2.6.2"
   },
   "description": "An Ionic project",
   "jest": {
     "preset": "jest-preset-angular",
-    "setupTestFrameworkScriptFile": "<rootDir>/src/setupJest.ts"
+    "setupTestFrameworkScriptFile": "<rootDir>/src/setupJest.ts",
+    "transformIgnorePatterns": [
+      "node_modules/(?!@ngrx|moment|ionic-angular|@ionic|@ionic-native)"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "json",
+      "node"
+    ]
   }
 }
