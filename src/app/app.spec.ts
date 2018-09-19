@@ -1,8 +1,4 @@
-import {
-    async,
-    ComponentFixture,
-    TestBed
-} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { Platform } from 'ionic-angular';
@@ -12,42 +8,46 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { MyApp } from './app.component';
 
 const platformStub = {
-    ready: (): Promise<string> => new Promise<string>((resolve, reject) => resolve('ready'))
+  ready: (): Promise<string> => new Promise<string>((resolve, reject) => resolve('ready'))
 };
 
 const statusBarStub = {
-    styleDefault: (): void => undefined
+  styleDefault: (): void => undefined
 };
 const splashScreenStub = {
-    hide: (): void => undefined
+  hide: (): void => undefined
 };
 
 describe('MyApp', () => {
-    let instance: MyApp;
-    let fixture: ComponentFixture<MyApp>;
+  let instance: MyApp;
+  let fixture: ComponentFixture<MyApp>;
 
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-          schemas: [
-            NO_ERRORS_SCHEMA
-          ],
-          declarations: [
-            MyApp
-          ],
-          providers: [
-            {provide: Platform, useValue: platformStub},
-            {provide: StatusBar, useValue: statusBarStub},
-            {provide: SplashScreen, useValue: splashScreenStub}
-          ]
-        }).compileComponents();
-      });
-    
-      beforeEach(() => {
-        fixture = TestBed.createComponent(MyApp);
-        instance = fixture.debugElement.componentInstance;
-      });
-    
-      it('should create the root page', () => {
-        expect(instance).toBeTruthy();
-    });
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      schemas: [NO_ERRORS_SCHEMA],
+      declarations: [MyApp],
+      providers: [{ provide: Platform, useValue: platformStub }, { provide: StatusBar, useValue: statusBarStub }, { provide: SplashScreen, useValue: splashScreenStub }]
+    }).compileComponents();
+  });
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(MyApp);
+    instance = fixture.debugElement.componentInstance;
+  });
+
+  it('should create the root page', () => {
+    expect(instance).toBeTruthy();
+  });
+
+  it('should create the root page with two pages with title predefined', () => {
+    expect(instance.pages[0].title).toStrictEqual('Home');
+    expect(instance.pages[1].title).toStrictEqual('List');
+    expect(instance.splashScreen).toBeTruthy();
+    expect(instance.statusBar).toBeTruthy();
+  });
+
+  it('should create the root page with splashscreen and status bar', () => {
+    expect(instance.splashScreen).toBeTruthy();
+    expect(instance.statusBar).toBeTruthy();
+  });
 });

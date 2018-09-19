@@ -10,7 +10,7 @@
     "build": "ionic-app-scripts build",
     "lint": "ionic-app-scripts lint",
     "test": "jest",
-    "test:watch": "jest --watch",
+    "test-watch": "jest --watch",
     "test:ci": "jest --runInBand"
   },
   "dependencies": {
