@@ -79,4 +79,16 @@ describe('HomePage', () => {
     expect(instance.lastUpdated).toBeUndefined();
   }));
 
+  it('should fetch the data previously stored on the storage on init', fakeAsync(() => {
+    const spy = jest
+      .spyOn(storage, 'get')
+      .mockReturnValueOnce(Promise.resolve('John Doe'))
+      .mockReturnValueOnce(Promise.resolve('2017-05-28T00:00:00.000Z'));
+    instance.ngOnInit();
+    tick();
+    expect(spy).toHaveBeenCalledTimes(2);
+    expect(spy).toHaveBeenCalledWith('userName');
+    expect(spy).toHaveBeenLastCalledWith('lastUpdated');
+    expect(instance.userName).toBe('John Doe');
+  }));
 });
